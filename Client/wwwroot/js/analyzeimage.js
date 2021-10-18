@@ -4,7 +4,7 @@ function analyzeImage() {
     var imageUrl = document.getElementById('imageUrlInput').value;
     var isValidUrl = validateUrl(imageUrl);
     if (isValidUrl == false) {
-        document.getElementById('imageDescription').innerHTML = 'Du har ikke angivet en valid url';
+        document.getElementById('imageDescription').innerHTML = 'Url not valid';
         return;
     }
 
@@ -67,7 +67,8 @@ function analyzeImage() {
             console.log(data)
         })
         .catch(err => {
-            document.getElementById('imageDescription').innerHTML = "Something went wrong";
+            document.getElementById('imageDescription').innerHTML = "Something went wrong.<br />Did you forget to type in a image url before clicking Analize image?";
+            spinner.style.visibility = 'hidden';
         })
 }
 
