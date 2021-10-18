@@ -11,8 +11,8 @@ namespace BlazorApp.Client
 {
     public class Program
     {
-        static string subscriptionKey = ConfigurationHelper.GetConfig("AzureCognitiveKey");
-        static string endpoint = ConfigurationHelper.GetConfig("AzureCognitiveEndpoint");
+        //static string subscriptionKey = ConfigurationHelper.GetConfig("AzureCognitiveKey");
+        //static string endpoint = ConfigurationHelper.GetConfig("AzureCognitiveEndpoint");
 
         public static async Task Main(string[] args)
         {
@@ -26,10 +26,10 @@ namespace BlazorApp.Client
         }
 
         // Create a client
-        ComputerVisionClient client = Authenticate(endpoint, subscriptionKey);
+        //ComputerVisionClient client = Authenticate(endpoint, subscriptionKey);
 
         // Analyze an image to get features and other properties.
-        AnalyzeImageUrl(client, ANALYZE_URL_IMAGE).Wait();
+        //AnalyzeImageUrl(client, ANALYZE_URL_IMAGE).Wait();
 
 
         public static ComputerVisionClient Authenticate(string endpoint, string key)
