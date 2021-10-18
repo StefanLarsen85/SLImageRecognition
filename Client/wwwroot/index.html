@@ -19,13 +19,6 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <script>
-        (async function () {
-            const { text } = await (await fetch(`/api/AnalyzeImage`)).json();
-            document.querySelector('#name').textContent = text;
-        }())
-    </script>
-
     <script src="_framework/blazor.webassembly.js"></script>
 </body>
 
