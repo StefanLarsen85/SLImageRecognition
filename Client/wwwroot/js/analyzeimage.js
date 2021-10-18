@@ -8,6 +8,9 @@ function analyzeImage() {
         return;
     }
 
+    let spinner = document.getElementById("spinner-border");
+    spinner.style.visibility = 'visible';
+
     const jsonBodyItem = {
         imageUrl: imageUrl
     };
