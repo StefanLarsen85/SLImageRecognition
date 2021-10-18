@@ -32,15 +32,10 @@ namespace BlazorApp.Api
             //Create a client
             ComputerVisionClient client = Authenticate(endpoint, subscriptionKey);
 
-            // URL image used for analyzing an image (image of puppy)
-            const string ANALYZE_URL_IMAGE = "https://moderatorsampleimages.blob.core.windows.net/samples/sample16.png";
-
             // Analyze an image to get features and other properties.
-            AnalyzeImageUrl(client, ANALYZE_URL_IMAGE).Wait();
+            var analyzeResult = await AnalyzeImageUrl(client, "https://moderatorsampleimages.blob.core.windows.net/samples/sample16.png");
 
-            var someObject = new { text = "This is the returnet message" };
-
-            return new OkObjectResult(someObject);
+            return new OkObjectResult(analyzeResult);
         }
 
         public static ComputerVisionClient Authenticate(string endpoint, string key)
@@ -51,7 +46,7 @@ namespace BlazorApp.Api
             return client;
         }
 
-        public static async Task AnalyzeImageUrl(ComputerVisionClient client, string imageUrl)
+        public static async Task<ImageAnalysis> AnalyzeImageUrl(ComputerVisionClient client, string imageUrl)
         {
             List<VisualFeatureTypes?> features = new List<VisualFeatureTypes?>()
             {
@@ -68,6 +63,8 @@ namespace BlazorApp.Api
 
             // Analyze the URL image 
             ImageAnalysis results = await client.AnalyzeImageAsync(imageUrl, visualFeatures: features);
+
+            return results;
         }
     }
 }
