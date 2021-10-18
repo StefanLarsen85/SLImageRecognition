@@ -62,6 +62,7 @@ function analyzeImage() {
 
 
             document.getElementById('imageDescription').innerHTML = fullTextResponse;
+            spinner.style.visibility = 'hidden';
 
             console.log(data)
         })
