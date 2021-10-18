@@ -29,11 +29,13 @@ namespace BlazorApp.Api
             string subscriptionKey = config["ComputerVisionKey"];
             string endpoint = "https://slimagerecognition.cognitiveservices.azure.com/";
 
-            //Create a client
-            ComputerVisionClient client = Authenticate(endpoint, subscriptionKey);
+            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+            dynamic data = JsonConvert.DeserializeObject(requestBody);
 
-            // Analyze an image to get features and other properties.
-            var analyzeResult = await AnalyzeImageUrl(client, "https://moderatorsampleimages.blob.core.windows.net/samples/sample16.png");
+            string imageUrl = data?.imageUrl;
+
+            ComputerVisionClient client = Authenticate(endpoint, subscriptionKey);
+            var analyzeResult = await AnalyzeImageUrl(client, imageUrl);
 
             return new OkObjectResult(analyzeResult);
         }
