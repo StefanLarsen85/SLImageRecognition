@@ -17,9 +17,9 @@ namespace BlazorApp.Api
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req, ILogger log, ExecutionContext context)
         {
 
-        
+            var someObject = new { text = "This is the returnet message" };
 
-            return new OkObjectResult("This is the response message");
+            return new OkObjectResult(someObject);
         }
     }
 }
